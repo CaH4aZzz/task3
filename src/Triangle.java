@@ -1,3 +1,5 @@
+import java.text.DecimalFormat;
+
 /**
  * Created by avokado on 15.04.2019.
  */
@@ -44,5 +46,24 @@ public class Triangle {
 
     public void setThirdSide(double thirdSide) {
         this.thirdSide = thirdSide;
+    }
+
+    public double getPerimeter() {
+        return firstSide + secondSide + thirdSide;
+    }
+
+    public double getSquare() {
+        double halfP = getPerimeter() / 2;
+
+        double result = Math.sqrt((halfP - firstSide) * (halfP - secondSide) * (halfP - thirdSide));
+
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        DecimalFormat df = new DecimalFormat("#.##");
+        return "[" + name + "]: " + df.format(getSquare()) + "cm";
+
     }
 }
