@@ -18,28 +18,25 @@ public class Controller {
         return listTriangle;
     }
 
-    public static void createAndAdd(String userInput){
+    public static void createAndAdd(String userInput) {
         addTriangleToTheList(createTriangle(userInput));
     }
 
-    private static Triangle createTriangle(String userInput){
+    private static Triangle createTriangle(String userInput) {
         validate(userInput);
         return new Triangle();
     }
 
     private static void validate(String userInput) {
         String[] paramArray = userInput.split(",");
-        if (paramArray.length != 4){
-            return ;
+        if (paramArray.length != 4) {
+            return;
         }
-
-        
     }
 
-    private static void addTriangleToTheList(Triangle triangle){
+    private static void addTriangleToTheList(Triangle triangle) {
         listTriangle.add(triangle);
     }
-
 
 
 }
