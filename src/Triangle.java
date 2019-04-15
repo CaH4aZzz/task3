@@ -9,6 +9,9 @@ public class Triangle {
     private double secondSide;
     private double thirdSide;
 
+    public Triangle() {
+    }
+
     public Triangle(String name, double firstSide, double secondSide, double thirdSide) {
         this.name = name;
         this.firstSide = firstSide;
