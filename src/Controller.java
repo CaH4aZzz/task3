@@ -1,42 +1,70 @@
+import exceptions.EmptyStringException;
+import exceptions.NegativeArgumentValueException;
+import exceptions.WrongParameterQuantityException;
+import model.Figure;
+import model.Triangle;
+import validators.IValidator;
+import validators.TriangleValidator;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.InputMismatchException;
 
 /**
  * Created by avokado on 15.04.2019.
  */
 public class Controller {
 
-    private View view;
-    private static List<Triangle> listTriangle = new ArrayList<>();
+    private IValidator validator = new TriangleValidator();
+    private View view = new View();
+    ArrayList<Figure> figureList = new ArrayList<>();
 
-    public Controller(View view, List<Triangle> listTriangle) {
-        this.view = view;
-        this.listTriangle = listTriangle;
-    }
+    void start() {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String userInput = "";
+        do {
+            try {
+                System.out.println("Please enter parameters of Triangle");
+                userInput = reader.readLine();
+                validator.isValid(userInput);
+                figureList.add(createTriangle(userInput));
 
-    public List<Triangle> getListTriangle() {
-        return listTriangle;
-    }
+            } catch (IOException | WrongParameterQuantityException | EmptyStringException | InputMismatchException | NumberFormatException | ClassNotFoundException | IllegalAccessException | InstantiationException | NegativeArgumentValueException e) {
+                view.printException(e);
+            }
 
-    public static void createAndAdd(String userInput) {
-        addTriangleToTheList(createTriangle(userInput));
-    }
+            System.out.println("Do you want to enter one more Triangle?");
+            try {
+                userInput = reader.readLine();
+            } catch (IOException e) {
+                view.printException(e);
+            }
+        } while ((userInput.equalsIgnoreCase("y")) || userInput.equalsIgnoreCase("yes"));
 
-    private static Triangle createTriangle(String userInput) {
-        validate(userInput);
-        return new Triangle();
-    }
-
-    private static void validate(String userInput) {
-        String[] paramArray = userInput.split(",");
-        if (paramArray.length != 4) {
-            return;
+        try {
+            reader.close();
+        } catch (IOException e) {
+            view.printException(e);
         }
+
+        view.printTriangleList(figureList);
     }
 
-    private static void addTriangleToTheList(Triangle triangle) {
-        listTriangle.add(triangle);
+    private Triangle createTriangle(String userInput) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+        String[] params = userInput.split(",");
+        Class<?> triangleClass = Class.forName(Triangle.class.getName());
+        Triangle triangle = (Triangle) triangleClass.newInstance();
+        int counter = 0;
+
+        for (Field field : triangleClass.getDeclaredFields()) {
+            field.setAccessible(true);
+            if (counter == 0) {
+                field.set(triangle, params[counter++]);
+            } else field.set(triangle, Double.parseDouble(params[counter++]));
+        }
+        return triangle;
     }
-
-
 }

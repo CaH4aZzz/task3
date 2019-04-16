@@ -1,9 +1,11 @@
+package model;
+
 import java.text.DecimalFormat;
 
 /**
  * Created by avokado on 15.04.2019.
  */
-public class Triangle {
+public class Triangle implements Figure {
     private String name;
     private double firstSide;
     private double secondSide;
@@ -51,10 +53,12 @@ public class Triangle {
         this.thirdSide = thirdSide;
     }
 
+    @Override
     public double getPerimeter() {
         return firstSide + secondSide + thirdSide;
     }
 
+    @Override
     public double getSquare() {
         double halfP = getPerimeter() / 2;
 
