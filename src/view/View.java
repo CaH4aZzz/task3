@@ -1,3 +1,6 @@
+package view;
+
+import controller.FigureComparator;
 import model.Figure;
 
 import java.io.BufferedReader;
@@ -13,7 +16,7 @@ public class View {
         this.reader = reader;
     }
 
-    void printSortedTriangleList(ArrayList<Figure> listFigure) {
+    public void printSortedTriangleList(ArrayList<Figure> listFigure) {
         FigureComparator comparator = new FigureComparator();
         listFigure.sort(comparator);
         int i = 1;
@@ -29,13 +32,13 @@ public class View {
         }
     }
 
-    String getUserInput(String message) throws IOException {
+    public String getUserInput(String message) throws IOException {
         System.out.println(message);
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         return reader.readLine();
     }
 
-    void printException(Exception e) {
+    public void printException(Exception e) {
         System.out.println(e.getMessage());
     }
 }

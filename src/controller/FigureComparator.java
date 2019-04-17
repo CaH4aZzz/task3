@@ -1,3 +1,5 @@
+package controller;
+
 import model.Figure;
 
 import java.util.Comparator;

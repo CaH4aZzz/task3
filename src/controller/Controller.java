@@ -1,7 +1,10 @@
+package controller;
+
 import model.Figure;
 import model.Triangle;
 import validators.IValidator;
 import validators.TriangleValidator;
+import view.View;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,7 +14,7 @@ import java.util.ArrayList;
 
 public class Controller {
 
-    void start() {
+    public void start() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         View view = new View(reader);
         IValidator validator = new TriangleValidator();
