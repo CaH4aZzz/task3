@@ -2,17 +2,11 @@ package model;
 
 import java.text.DecimalFormat;
 
-/**
- * Created by avokado on 15.04.2019.
- */
 public class Triangle implements Figure {
     private String name;
     private double firstSide;
     private double secondSide;
     private double thirdSide;
-
-    public Triangle() {
-    }
 
     public Triangle(String name, double firstSide, double secondSide, double thirdSide) {
         this.name = name;

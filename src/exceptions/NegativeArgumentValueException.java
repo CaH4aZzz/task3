@@ -1,19 +1,13 @@
 package exceptions;
 
-/**
- * Created by avokado on 16.04.2019.
- */
 public class NegativeArgumentValueException extends Exception {
-    private int position;
 
-    public NegativeArgumentValueException(int position) {
-        this.position = position;
+    public NegativeArgumentValueException(String msg) {
+        super(msg);
     }
 
     @Override
     public String toString() {
-        return "NegativeArgumentValueException{" +
-                "position = " + position +
-                '}';
+        return "NegativeArgumentValueException{}";
     }
 }

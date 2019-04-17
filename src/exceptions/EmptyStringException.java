@@ -1,19 +1,13 @@
 package exceptions;
 
-/**
- * Created by avokado on 16.04.2019.
- */
 public class EmptyStringException extends Exception{
-    private int position;
 
-    public EmptyStringException(int position) {
-        this.position = position;
+    public EmptyStringException(String msg){
+        super(msg);
     }
 
     @Override
     public String toString() {
-        return "EmptyStringException{" +
-                "position = " + position +
-                '}';
+        return "EmptyStringException{}";
     }
 }
