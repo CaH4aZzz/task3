@@ -11,13 +11,13 @@ import java.util.ArrayList;
 
 public class Controller {
 
-    private IValidator validator = new TriangleValidator();
-    private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-    private View view = new View(reader);
-
     void start() {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        View view = new View(reader);
+        IValidator validator = new TriangleValidator();
         ArrayList<Figure> figureList = new ArrayList<>();
         String userInput = null;
+
         do {
             try {
                 userInput = view.getUserInput("Please enter parameters of Triangle");

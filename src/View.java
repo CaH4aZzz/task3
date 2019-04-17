@@ -13,16 +13,16 @@ public class View {
         this.reader = reader;
     }
 
-    void printTriangleList(ArrayList<Figure> listFigure) {
+    void printSortedTriangleList(ArrayList<Figure> listFigure) {
+        FigureComparator comparator = new FigureComparator();
+        listFigure.sort(comparator);
         int i = 1;
         for (Figure figure : listFigure) {
             System.out.println(i++ + "." + figure.toString());
         }
     }
 
-    void printSortedTriangleList(ArrayList<Figure> listFigure) {
-        FigureComparator comparator = new FigureComparator();
-        listFigure.sort(comparator);
+    void printTriangleList(ArrayList<Figure> listFigure) {
         int i = 1;
         for (Figure figure : listFigure) {
             System.out.println(i++ + "." + figure.toString());
@@ -36,6 +36,6 @@ public class View {
     }
 
     void printException(Exception e) {
-        System.out.println(e.getClass().getSimpleName() + e.getMessage());
+        System.out.println(e.getMessage());
     }
 }
