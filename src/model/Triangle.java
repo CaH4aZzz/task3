@@ -15,38 +15,6 @@ public class Triangle implements Figure {
         this.thirdSide = thirdSide;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getFirstSide() {
-        return firstSide;
-    }
-
-    public void setFirstSide(double firstSide) {
-        this.firstSide = firstSide;
-    }
-
-    public double getSecondSide() {
-        return secondSide;
-    }
-
-    public void setSecondSide(double secondSide) {
-        this.secondSide = secondSide;
-    }
-
-    public double getThirdSide() {
-        return thirdSide;
-    }
-
-    public void setThirdSide(double thirdSide) {
-        this.thirdSide = thirdSide;
-    }
-
     @Override
     public double getPerimeter() {
         return firstSide + secondSide + thirdSide;
@@ -54,9 +22,9 @@ public class Triangle implements Figure {
 
     @Override
     public double getSquare() {
-        double halfP = getPerimeter() / 2;
-
-        double result = Math.sqrt((halfP - firstSide) * (halfP - secondSide) * (halfP - thirdSide));
+        double p = getPerimeter();
+        double halfP = p / 2;
+        double result = Math.sqrt(p * (halfP - firstSide) * (halfP - secondSide) * (halfP - thirdSide));
 
         return result;
     }

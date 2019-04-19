@@ -1,8 +1,5 @@
 package validators;
 
-import exceptions.EmptyStringException;
-import exceptions.NegativeArgumentValueException;
-import exceptions.WrongParameterQuantityException;
 import model.Triangle;
 
 public class TriangleValidator implements IValidator {
@@ -10,9 +7,9 @@ public class TriangleValidator implements IValidator {
     private final int PARAMETER_COUNT = 4;
 
     @Override
-    public Triangle validate(String params) throws WrongParameterQuantityException, EmptyStringException, IllegalArgumentException, NegativeArgumentValueException {
+    public Triangle getValidatesFigure(String params) throws IllegalArgumentException {
 
-        if (params == null){
+        if (params == null) {
             throw new NullPointerException();
         }
 
@@ -20,21 +17,22 @@ public class TriangleValidator implements IValidator {
         int paramLength = paramArray.length;
 
         if (paramLength != PARAMETER_COUNT) {
-            throw new WrongParameterQuantityException("Wrong quantity of parameters!\nPlease enter 4 parameter to create Triangle");
+            throw new IllegalArgumentException("Wrong quantity of parameters!\nPlease enter 4 parameter to create Triangle");
         }
 
         for (int i = 0; i < paramLength; i++) {
             if (paramArray[i].trim().equals("")) {
-                throw new EmptyStringException("Empty string cannot be used as a parameter");
+                throw new IllegalArgumentException("Empty string cannot be used as a parameter");
             }
         }
 
         for (int i = 1; i < paramLength; i++) {
             try {
                 double param = Double.parseDouble(paramArray[i]);
-                if (param < 0) throw new NegativeArgumentValueException("Negative number cannot be used as as parameter\nPlease enter positive number");
+                if (param < 0)
+                    throw new IllegalArgumentException("Negative number \"" + param + "\" cannot be used as as parameter\nPlease enter only positive numbers");
             } catch (NumberFormatException e) {
-                throw e;
+                throw new NumberFormatException("Entered line cannot be used as a parameter\nPlease enter only positive numbers");
             }
         }
 
