@@ -7,7 +7,7 @@ public class TriangleValidator implements IValidator {
     private final int PARAMETER_COUNT = 4;
 
     @Override
-    public Triangle getValidatesFigure(String params) throws IllegalArgumentException {
+    public Triangle getValidFigure(String params) throws IllegalArgumentException {
 
         if (params == null) {
             throw new NullPointerException();
@@ -40,6 +40,10 @@ public class TriangleValidator implements IValidator {
         double firstSide = Double.parseDouble(paramArray[1]);
         double secondSide = Double.parseDouble(paramArray[2]);
         double thirdSide = Double.parseDouble(paramArray[3]);
+
+        if (!((firstSide + secondSide > thirdSide) && (firstSide + thirdSide > secondSide) && (secondSide + thirdSide > firstSide)))
+            throw new IllegalArgumentException("Triangle cannot exist if one of his sides bigger then sum of two others");
+
         return new Triangle(name, firstSide, secondSide, thirdSide);
     }
 }

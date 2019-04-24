@@ -21,7 +21,7 @@ public class Controller {
         do {
             try {
                 userInput = consoleReader.getUserInput("Please enter parameters of Triangle");
-                figureList.add(validator.getValidatesFigure(userInput));
+                figureList.add(validator.getValidFigure(userInput));
             } catch (Exception e) {
                 consoleWriter.printException(e);
             }
@@ -32,6 +32,15 @@ public class Controller {
             }
         } while ((userInput.equalsIgnoreCase("y")) || userInput.equalsIgnoreCase("yes"));
 
-        consoleWriter.printSortedTriangleList(figureList);
+        consoleWriter.printTriangleList(getSortedList(figureList));
+    }
+
+    private ArrayList<Figure> getSortedList(ArrayList<Figure> list) {
+        ArrayList<Figure> sortedList = new ArrayList<>();
+        list.sort(new FigureSquareComparator());
+        for (Figure f : list) {
+            sortedList.add(f);
+        }
+        return sortedList;
     }
 }
